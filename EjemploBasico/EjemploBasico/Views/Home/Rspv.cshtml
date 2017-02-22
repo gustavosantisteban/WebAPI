@@ -1,0 +1,55 @@
+﻿@model EjemploBasico.Models.PacienteModel
+
+@{
+    ViewBag.Title = "Rspv";
+}
+
+<div class="panel panel-success">
+    <div class="panel-heading"><h4>RSVP</h4></div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Will you attend?</label>
+                    @Html.DropDownListFor(x => x.FueAtendido,
+                        new[] {
+                            new SelectListItem() {Text = "Si, Fui atendido",
+                            Value = bool.TrueString },
+                            new SelectListItem() {Text = "No, aun No",
+                            Value = bool.FalseString }
+                        }, "Elija una opción", new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+      </div>
+</div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>

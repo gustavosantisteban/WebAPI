@@ -1,0 +1,12 @@
+﻿@model IEnumerable<EjemploBasico.Models.PacienteModel>
+
+@if (Model.Count() == 1)
+{
+    <p>Genial usted fue la primera persona en aceptar! Zruc Zruc!</p>
+}
+else {
+    <p>
+        Aqui la lista de personas que fueron atendidas: @string.Join(", ", Model.Select(x => x.Nombre))
+    </p>
+}
+

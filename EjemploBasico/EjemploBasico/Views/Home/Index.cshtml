@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ ViewBag.Title = "Pacientes!"; }
+<div class="text-center" data-bind="visible: model.view() == 'Bienvenido'">
+    <h2>Se encuentra en nuestra lista de Pacientes?</h2>
+    <h3>su turno ha llegado, si no se encuentra click en: </h3>
+    <button class="btn btn-success" data-bind="click: showForm">Agregar</button>
+</div>
+
+<div data-bind="visible: model.view() == 'form'">
+    <div class="panel panel-success">
+        <div class="panel-heading"><h4>Pacientes</h4></div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Su Nombre:</label>
+                <input class="form-control" data-bind="value: model.rsvp.Nombre" />
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" data-bind="value: model.rsvp.Email" />
+            </div>
+            <div class="form-group">
+                <label>Fue atendido:</label>
+                <select class="form-control" data-bind="value: model.rsvp.FueAtendido">
+                    <option value="true">Si, Fui atendido</option>
+                    <option value="false">No, Todavia Esperando</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success" data-bind="click: sendRsvp">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-bind="visible: model.view() == 'Gracias'">
+    <h1>Gracias por <span data-bind="text : model.rsvp.Nombre()"></span>!</h1>
+    <div class="lead">
+        <span data-bind="visible: model.rsvp.FueAtendido() == 'true'">
+            Genial, estás en la lista de Pacientes a ser atendido
+        </span>
+        Aqui està la lista de personas que fueron atendidas.
+        <span data-bind="text: model.attendees().join(',')"></span>
+        <span data-bind="visible: model.rsvp.FueAtendido() == 'false'">
+            Disculpe los solucionaremos a la brevedad.
+        </span>
+    </div>
+</div>

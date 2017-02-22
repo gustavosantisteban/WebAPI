@@ -1,0 +1,15 @@
+﻿@model EjemploBasico.Models.PacienteModel
+
+@{ ViewBag.Title = "Gracias"; }
+<h1>Thank you, @Model.Nombre!</h1>
+<div class="lead">
+    @if (Model.FueAtendido == true)
+    {
+        @:Es Genial, esperemos que este todo OK, cualquier duda escribanos!
+        @Html.Action("Attendees", "Home")
+    }
+    else {
+        @:Disculpe, esperamos que pronto este disponible el turno! lo solucionaremos a la brevedad.
+}
+</div>
+
